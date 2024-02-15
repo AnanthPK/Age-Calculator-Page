@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>age</title>
+</head>
+<body>
+<div class="bg">
+    <div class="row container-fluid back">
+        <div class="col-lg-2"></div>
+    <div class="col-lg-4 title ">
+        <center>
+        <h1>AGE CALCULATOR</h1>
+        <img src="./images/age_cal.png" alt="">
+    </center>
+    </div>
+
+    <div class="col-lg-4 field">
+        <center class="inField">
+    <h5>Enter your birth date & Time :</h5>
+    <input type="datetime-local" id="bdt"/>
+    <button id="done">Done</button>
+    <p id="year"></p>
+    <p id="month"></p>
+    <p id="week"></p>
+    <p id="day"></p>
+    <p id="hour"></p>
+    <p id="minute"></p>
+    <p id="second"></p>
+</center>
+</div>
+<div class="col-lg-2"></div>
+
+</div>
+</div>
+
+    <script >
+        document.querySelector("#done").addEventListener("click", function(){
+            const update = function () {
+                let bdt = document.querySelector("#bdt").value,
+                bday = new Date(bdt);
+                bday_val = bday.getTime();
+                today = new Date();
+                now = today.getTime();
+                value = now - bday_val;
+                var_sec = Math.floor(value/1000);
+                var_min = Math.floor(value/ (1000 * 60) );
+                var_hour = Math.floor(value / (1000 * 60 * 60) );
+                var_day = Math.floor(value / (1000 * 60 * 60 * 24) );
+                var_week = Math.floor(value / (1000 * 60 * 60 * 24 * 7));
+                var_month = Math.floor(value / (1000 * 60 * 60 * 24 * 30.4375));
+                var_year = Math.floor(value / (1000 * 60 * 60 * 24 * 365.20));
+
+            let insert = function(x,y) {
+                document.querySelector(x).innerHTML = y;
+            }
+            insert("#year", var_year + " years");
+            insert("#month", var_month + " Months");
+            insert("#week", var_week + " weeks");
+            insert("#day", var_day + " days");
+            insert("#hour", var_hour + " hours");
+            insert("#minute", var_min + "minutes");
+            insert("#second", var_sec + " seconds");
+
+
+
+            };
+            setInterval(update,1000)
+        })
+    </script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</body>
+</html>
